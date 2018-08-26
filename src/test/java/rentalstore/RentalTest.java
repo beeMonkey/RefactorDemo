@@ -17,6 +17,7 @@ public class RentalTest {
                         + "You earned 0 frequent renter points",
                 statement);
     }
+
     @Test
     public void should_return_correct_statement_given_customer_has_rent_one_regular_movie_for_1_day() {
         Movie regularMovie = new Movie("Titanic", 0);
