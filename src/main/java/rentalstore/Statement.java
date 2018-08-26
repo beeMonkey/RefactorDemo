@@ -2,17 +2,22 @@ package rentalstore;
 
 import java.util.Enumeration;
 
-public class Statement {
-    public static String statement(Customer customer){
+public  abstract class Statement {
+    public  String Statement(Customer customer){
         Enumeration rentals = customer.getRentals().elements();
-        String result = customer.getHeader();
+        String result = getHeader(customer);
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
             //show figures for this rental
-            result += customer.getContent(each);
+            result += getContent(each);
         }
         //add footer lines
-        result += customer.getFooter();
+        result += getFooter(customer);
         return result;
     }
+      abstract String getHeader(Customer customer);
+
+      abstract String getContent(Rental each);
+
+      abstract String getFooter(Customer customer);
 }

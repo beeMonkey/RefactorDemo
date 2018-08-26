@@ -7,10 +7,11 @@ import static org.junit.Assert.assertEquals;
 
 public class RentalTest {
     private Customer customer=new Customer("Jerry");
-
+    private TextStatement textStatement=new TextStatement();
+    private HtmlStatement htmlStatement=new HtmlStatement();
     @Test
     public void should_return_correct_result_given_0_rental(){
-        String statement= Statement.statement(customer);
+        String statement= textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n"
                         + "Amount owed is 0.0\n"
@@ -24,7 +25,7 @@ public class RentalTest {
         Rental oneDayRental = new Rental(regularMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = Statement.statement(customer);
+        String statement = textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n" +
                 "\t" + regularMovie.getTitle() + "\t2.0\n" +
@@ -38,7 +39,7 @@ public class RentalTest {
         Rental threeDayRental = new Rental(regularMovie, 3);
         customer.addRental(threeDayRental);
 
-        String statement = Statement.statement(customer);
+        String statement = textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n" +
                 "\t" + regularMovie.getTitle() + "\t3.5\n" +
@@ -52,7 +53,7 @@ public class RentalTest {
         Rental oneDayRental = new Rental(newReleaseMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = Statement.statement(customer);
+        String statement = textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n" +
                 "\t" + newReleaseMovie.getTitle() + "\t3.0\n" +
@@ -66,7 +67,7 @@ public class RentalTest {
         Rental twoDayRental = new Rental(newReleaseMovie, 2);
         customer.addRental(twoDayRental);
 
-        String statement = Statement.statement(customer);
+        String statement = textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n" +
                 "\t" + newReleaseMovie.getTitle() + "\t6.0\n" +
@@ -80,7 +81,7 @@ public class RentalTest {
         Rental oneDayRental = new Rental(childrenMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = Statement.statement(customer);
+        String statement = textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n" +
                 "\t" + childrenMovie.getTitle() + "\t1.5\n" +
@@ -94,7 +95,7 @@ public class RentalTest {
         Rental fourDayRental = new Rental(childrenMovie, 4);
         customer.addRental(fourDayRental);
 
-        String statement = Statement.statement(customer);
+        String statement = textStatement.Statement(customer);
 
         assertEquals("Rental Record for Jerry\n" +
                 "\t" + childrenMovie.getTitle() + "\t3.0\n" +
@@ -104,7 +105,7 @@ public class RentalTest {
 
     @Test
     public void should_return_correct_html_statement_given_0_rental(){
-        String statement=customer.htmlStatement();
+        String statement= htmlStatement.Statement(customer);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n"
                         + "<P>You owe<EM>0.0</EM><P>\n"
@@ -118,7 +119,7 @@ public class RentalTest {
         Rental oneDayRental = new Rental(regularMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = customer.htmlStatement();
+        String statement = htmlStatement.Statement(customer);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n"
                         + regularMovie.getTitle()+": 2.0<BR>\n"
@@ -133,7 +134,7 @@ public class RentalTest {
         Rental threeDayRental = new Rental(regularMovie, 3);
         customer.addRental(threeDayRental);
 
-        String statement = customer.htmlStatement();
+        String statement = htmlStatement.Statement(customer);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n"
                                 + regularMovie.getTitle()+": 3.5<BR>\n"
@@ -148,7 +149,7 @@ public class RentalTest {
         Rental oneDayRental = new Rental(newReleaseMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = customer.htmlStatement();
+        String statement = htmlStatement.Statement(customer);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n" +
                 newReleaseMovie.getTitle()+": 3.0<BR>\n" +
@@ -163,7 +164,7 @@ public class RentalTest {
         Rental twoDayRental = new Rental(newReleaseMovie, 2);
         customer.addRental(twoDayRental);
 
-        String statement = customer.htmlStatement();
+        String statement = htmlStatement.Statement(customer);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n" +
                 newReleaseMovie.getTitle()+": 6.0<BR>\n" +
@@ -178,7 +179,7 @@ public class RentalTest {
         Rental oneDayRental = new Rental(childrenMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = customer.htmlStatement();
+        String statement = htmlStatement.Statement(customer);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n" +
                         childrenMovie.getTitle()+": 1.5<BR>\n" +
@@ -193,7 +194,7 @@ public class RentalTest {
         Rental fourDayRental = new Rental(childrenMovie, 4);
         customer.addRental(fourDayRental);
 
-        String statement = customer.htmlStatement();
+        String statement = htmlStatement.Statement(customer);
 
         System.out.println(statement);
 

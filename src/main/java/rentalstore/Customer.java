@@ -28,34 +28,6 @@ public class Customer {
         return name;
     }
 
-    public String getContent(Rental each) {
-        return "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-    }
-
-    public String getFooter() {
-        return "Amount owed is " + String.valueOf(getTotalCharge()) + "\n"
-                  + "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
-    }
-
-    public String getHeader() {
-        return "Rental Record for " + getName() + "\n";
-    }
-
-
-    public String htmlStatement() {
-        Enumeration rentals = this.rentals.elements();
-        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
-        }
-        //add footer lines
-        result += "<P>You owe<EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n";
-        result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) +
-                "</EM> frequent renter points<P>";
-        return result;
-    }
-
     double getTotalCharge() {
         double result = 0;
         Enumeration rentals = this.rentals.elements();
