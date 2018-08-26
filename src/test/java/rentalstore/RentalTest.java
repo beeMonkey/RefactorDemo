@@ -100,4 +100,16 @@ public class RentalTest {
                 "Amount owed is 3.0\n" +
                 "You earned 1 frequent renter points", statement);
     }
+
+    @Test
+    public void should_return_correct_html_statement_given_0_rental(){
+        String statement=customer.htmlStatement();
+
+        assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n"
+                        + "<P>You owe<EM>0.0</EM><P>\n"
+                        + "On this rental you earned <EM>0</EM> frequent renter points<P>",
+                statement);
+    }
+
+    
 }
