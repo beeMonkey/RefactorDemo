@@ -5,6 +5,15 @@ import java.util.Vector;
 
 public class Customer {
     private String name;
+
+    public Vector getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(Vector rentals) {
+        this.rentals = rentals;
+    }
+
     private Vector rentals = new Vector();
 
     public Customer(String name) {
@@ -19,19 +28,17 @@ public class Customer {
         return name;
     }
 
-    public String statement(){
-        Enumeration rentals = this.rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-        }
+    public String getContent(Rental each) {
+        return "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+    }
 
-        //add footer lines
-        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
-        return result;
+    public String getFooter() {
+        return "Amount owed is " + String.valueOf(getTotalCharge()) + "\n"
+                  + "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
+    }
+
+    public String getHeader() {
+        return "Rental Record for " + getName() + "\n";
     }
 
 
